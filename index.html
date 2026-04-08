@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>筋膜王 按摩專門店 | 苗栗竹南深層筋膜放鬆專家</title>
   
-  <!-- 新增：SEO 搜尋引擎最佳化標籤 -->
+  <!-- SEO 搜尋引擎最佳化標籤 -->
   <meta name="description" content="筋膜王按摩專門店位於苗栗竹南。專注於深層筋膜放鬆，透過精準手技與科學化評估，為您解決長年肩頸僵硬、運動痠痛。採全預約制，給您最純粹的放鬆體驗。">
   <meta name="keywords" content="筋膜王, 竹南按摩, 苗栗按摩, 筋膜放鬆, 運動按摩, 深層組織按摩, 肩頸僵硬, 腰背痠痛, 運動恢復">
   <meta name="author" content="筋膜王 按摩專門店">
   
-  <!-- 新增：社群分享標籤 (讓別人用 Line/FB 傳網址時，會顯示漂亮預覽) -->
+  <!-- 社群分享標籤 -->
   <meta property="og:title" content="筋膜王 按摩專門店 | 深層筋膜放鬆專家">
   <meta property="og:description" content="打破傳統穴道迷思，專注於深層的釋放。職人級深層手技，從根源解決您的緊繃問題。">
   <meta property="og:type" content="website">
   
-  <!-- 引入 Google 字體 (加入 Zhi Mang Xing 與 Ma Shan Zheng 作為行書備用，以及原本的 Noto Serif TC) -->
+  <!-- 引入 Google 字體 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
@@ -30,12 +30,12 @@
     /* 確保套用預設字體 */
     body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
     
-    /* 原本的明體 (保留給部分需要質感的文字使用) */
+    /* 原本的明體 */
     .noto-serif { font-family: "Noto Serif TC", serif; }
     
-    /* ⚠️ 強制套用雲端行書體，確保字體絕對不會跑掉 */
+    /* 書法字體風格 (如果圖片失效時的備用字體) */
     .calligraphy { 
-      font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', 'STXingkai', '華文行楷', cursive !important; 
+      font-family: "STXingkai", "華文行楷", "Xingkai SC", "DFXingShu-W5", "DFXingkai-W5", "Zhi Mang Xing", "Ma Shan Zheng", cursive; 
       font-weight: normal; 
     }
 
@@ -50,9 +50,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-20">
         <div class="flex items-center cursor-pointer" onclick="scrollToSection('home')" translate="no">
-          <!-- 絕對不跑掉的書法字體 -->
-          <span class="text-4xl text-stone-900 calligraphy mt-1">筋膜王</span>
-          <span class="text-stone-500 text-sm ml-3 font-medium tracking-widest border-l border-stone-300 pl-3">
+          <!-- 調整：縮小圖片實際佔用高度，利用 scale 放大並向左對齊，拉近與右邊文字的距離 -->
+          <img src="./logo.png" alt="筋膜王" class="h-10 md:h-12 w-auto object-contain transform scale-125 origin-left" onerror="this.onerror=null; this.outerHTML='<span class=\'text-3xl md:text-4xl text-stone-900 calligraphy mt-1\'>筋膜王</span>';">
+          <span class="text-stone-500 text-sm ml-4 md:ml-6 font-medium tracking-widest border-l border-stone-300 pl-3">
             按摩專門店
           </span>
         </div>
@@ -90,23 +90,24 @@
   </nav>
 
   <!-- 首頁 Hero 區塊 -->
-  <section id="home" class="relative pt-20 pb-20 md:pb-32 flex items-center min-h-[70vh] md:min-h-[85vh] bg-stone-200 overflow-hidden">
+  <section id="home" class="relative pt-20 pb-16 md:pb-24 flex items-center min-h-[60vh] md:min-h-[80vh] bg-stone-200 overflow-hidden">
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1617155093730-a8bf47be330d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center bg-no-repeat opacity-50 mix-blend-multiply grayscale-[30%]"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3/4 h-[300px] md:h-[500px] bg-yellow-100/30 blur-[80px] md:blur-[120px] rounded-full pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10 w-full">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10 w-full pt-10">
       
-      <!-- 新增：專門給 Google 搜尋引擎看的隱藏大標題 (H1對於SEO非常重要) -->
+      <!-- 給 Google 看的隱藏大標題 -->
       <h1 class="sr-only">筋膜王 按摩專門店 - 苗栗竹南深層筋膜放鬆專家</h1>
 
-      <!-- 將原本的文字替換為圖片 Logo，並大幅放大尺寸 -->
-      <img src="./logo.png" alt="筋膜王" class="h-40 md:h-64 w-auto mb-2 md:mb-6 drop-shadow-sm object-contain transform scale-[1.2] md:scale-[1.4]" translate="no" onerror="this.onerror=null; this.outerHTML='<div class=\'text-6xl md:text-8xl text-stone-900 mb-6 tracking-widest drop-shadow-sm calligraphy\' translate=\'no\'>筋膜王</div>';">
-      <p class="text-xl md:text-2xl text-stone-700 mb-12 max-w-2xl leading-relaxed tracking-widest font-light">
+      <!-- 調整：降低圖片高度框架，用 scale 放大字體，減少 mb (下邊距) 讓下方文字貼緊圖片 -->
+      <img src="./logo.png" alt="筋膜王" class="h-20 md:h-32 w-auto mb-4 md:mb-6 drop-shadow-sm object-contain transform scale-[1.4] md:scale-[1.6]" translate="no" onerror="this.onerror=null; this.outerHTML='<div class=\'text-7xl md:text-8xl text-stone-900 mb-4 tracking-widest drop-shadow-sm calligraphy\' translate=\'no\'>筋膜王</div>';">
+      
+      <p class="text-xl md:text-2xl text-stone-700 mb-10 max-w-2xl leading-relaxed tracking-widest font-light relative z-10">
         純粹的手法，極致的放鬆<br/>回歸身體最原本的平靜
       </p>
-      <button onclick="scrollToSection('booking')" class="bg-stone-900 hover:bg-stone-800 text-white text-lg px-8 py-3 md:px-10 md:py-4 rounded-full transition-all hover:shadow-lg flex items-center tracking-widest">
-        <i data-lucide="phone-call" class="mr-3 h-5 w-5"></i>
-        電話專屬預約
+      <button onclick="scrollToSection('booking')" class="bg-stone-900 hover:bg-stone-800 text-white text-lg px-8 py-3 md:px-10 md:py-4 rounded-full transition-all hover:shadow-lg flex items-center tracking-widest relative z-10">
+        <i data-lucide="phone" class="mr-3 h-5 w-5"></i>
+        來電預約時段
       </button>
     </div>
   </section>
@@ -347,7 +348,7 @@
     </div>
   </section>
 
-  <!-- 預約專區 (已改為電話引導) -->
+  <!-- 電話預約引導專區 -->
   <section id="booking" class="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
     <div class="absolute top-0 right-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2"></div>
@@ -367,7 +368,7 @@
         <p class="text-stone-600 mb-2 font-light text-lg">營業時間：週一至週日 10:00 - 22:00</p>
         <p class="text-stone-500 mb-10 font-light text-sm">（請於營業時間內來電，我們將為您安排專屬時段）</p>
         
-        <!-- href="tel:..." 可讓手機點擊後直接撥打 -->
+        <!-- 手機點擊後直接撥打 -->
         <a href="tel:0908170200" class="w-full md:w-auto bg-stone-900 hover:bg-stone-800 text-white font-medium tracking-widest text-lg px-12 py-4 rounded-full transition-all shadow-md flex items-center justify-center hover:shadow-lg">
           <i data-lucide="phone" class="mr-3 h-5 w-5"></i>
           立即撥打預約
@@ -380,10 +381,10 @@
   <footer class="bg-white text-stone-500 py-16 border-t border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
       <div>
-        <div class="mb-6" translate="no">
-          <!-- 絕對不跑掉的書法字體 -->
-          <span class="text-3xl text-stone-900 calligraphy">筋膜王</span>
-          <span class="text-stone-500 text-xs ml-2 font-medium tracking-widest">按摩專門店</span>
+        <div class="mb-6 flex items-end" translate="no">
+          <!-- 調整：縮小圖片高度，用 scale 放大並向左對齊 -->
+          <img src="./logo.png" alt="筋膜王" class="h-10 md:h-12 w-auto object-contain inline-block transform scale-125 md:scale-[1.3] origin-left" onerror="this.onerror=null; this.outerHTML='<span class=\'text-3xl text-stone-900 calligraphy\'>筋膜王</span>';">
+          <span class="text-stone-500 text-xs ml-6 md:ml-8 font-medium tracking-widest mb-1 md:mb-1.5">按摩專門店</span>
         </div>
         <p class="mb-6 font-light leading-relaxed">專注於深層筋膜放鬆，<br/>給您最純粹的身體保養與修復體驗。</p>
         <div class="flex gap-4">
@@ -416,7 +417,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript 邏輯 (移除了表單驗證，僅保留版面切換) -->
+  <!-- JavaScript 邏輯 -->
   <script>
     // 渲染 Lucide Icons
     lucide.createIcons();
