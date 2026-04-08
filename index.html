@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>筋膜王 按摩專門店</title>
+  
+  <!-- 引入 Google 字體 (將 Zhi Mang Xing 行書體設定為載入重點) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- 引入 Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 引入 Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* 確保套用預設字體 */
+    body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+    
+    /* 原本的明體 (保留給部分需要質感的文字使用) */
+    .noto-serif { font-family: "Noto Serif TC", serif; }
+    
+    /* ⚠️ 強制套用雲端行書體，確保字體絕對不會跑掉 */
+    .calligraphy { 
+      font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', 'STXingkai', '華文行楷', cursive !important; 
+      font-weight: normal; 
+    }
+
+    /* 選取文字時的背景色 */
+    ::selection { background-color: #e7e5e4; }
+  </style>
+</head>
+<body class="min-h-screen bg-stone-50 text-stone-800">
+
+  <!-- 導覽列 -->
+  <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20">
+        <div class="flex items-center cursor-pointer" onclick="scrollToSection('home')" translate="no">
+          <!-- 絕對不跑掉的書法字體 -->
+          <span class="text-4xl text-stone-900 calligraphy mt-1">筋膜王</span>
+          <span class="text-stone-500 text-sm ml-3 font-medium tracking-widest border-l border-stone-300 pl-3">
+            按摩專門店
+          </span>
+        </div>
+        
+        <!-- 桌面版選單 -->
+        <div class="hidden md:flex items-center space-x-8">
+          <button onclick="scrollToSection('about')" class="text-stone-600 hover:text-stone-900 transition-colors font-medium tracking-wide">關於我們</button>
+          <button onclick="scrollToSection('knowledge')" class="text-stone-600 hover:text-stone-900 transition-colors font-medium tracking-wide">認識筋膜</button>
+          <button onclick="scrollToSection('process')" class="text-stone-600 hover:text-stone-900 transition-colors font-medium tracking-wide">放鬆流程</button>
+          <button onclick="scrollToSection('services')" class="text-stone-600 hover:text-stone-900 transition-colors font-medium tracking-wide">服務項目</button>
+          <button onclick="scrollToSection('masters')" class="text-stone-600 hover:text-stone-900 transition-colors font-medium tracking-wide">專業師傅</button>
+          <button onclick="scrollToSection('booking')" class="bg-stone-900 hover:bg-stone-800 text-white px-7 py-2.5 rounded-full transition-colors font-medium tracking-wider shadow-md">
+            立即預約
+          </button>
+        </div>
+
+        <!-- 手機版選單按鈕 -->
+        <div class="md:hidden flex items-center">
+          <button onclick="toggleMenu()" class="text-stone-900">
+            <i data-lucide="menu" id="menuIcon" class="h-6 w-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 手機版下拉選單 -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100 pb-6 px-4 pt-4 shadow-xl">
+      <button onclick="scrollToSection('about')" class="block w-full text-center py-3 text-stone-600 hover:text-stone-900 tracking-wide">關於我們</button>
+      <button onclick="scrollToSection('knowledge')" class="block w-full text-center py-3 text-stone-600 hover:text-stone-900 tracking-wide">認識筋膜</button>
+      <button onclick="scrollToSection('process')" class="block w-full text-center py-3 text-stone-600 hover:text-stone-900 tracking-wide">放鬆流程</button>
+      <button onclick="scrollToSection('services')" class="block w-full text-center py-3 text-stone-600 hover:text-stone-900 tracking-wide">服務項目</button>
+      <button onclick="scrollToSection('masters')" class="block w-full text-center py-3 text-stone-600 hover:text-stone-900 tracking-wide">專業師傅</button>
+      <button onclick="scrollToSection('booking')" class="block w-full text-center mt-4 bg-stone-900 text-white py-3 rounded-lg font-medium tracking-wider">立即預約</button>
+    </div>
+  </nav>
+
+  <!-- 首頁 Hero 區塊 -->
+  <section id="home" class="relative pt-20 pb-20 md:pb-32 flex items-center min-h-[70vh] md:min-h-[85vh] bg-stone-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1617155093730-a8bf47be330d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center bg-no-repeat opacity-50 mix-blend-multiply grayscale-[30%]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3/4 h-[300px] md:h-[500px] bg-yellow-100/30 blur-[80px] md:blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10 w-full">
+      <!-- 絕對不跑掉的書法字體 -->
+      <h1 class="text-6xl md:text-8xl text-stone-900 mb-6 tracking-widest drop-shadow-sm calligraphy" translate="no">
+        筋膜王
+      </h1>
+      <p class="text-xl md:text-2xl text-stone-700 mb-12 max-w-2xl leading-relaxed tracking-widest font-light">
+        純粹的手法，極致的放鬆<br/>回歸身體最原本的平靜
+      </p>
+      <button onclick="scrollToSection('booking')" class="bg-stone-900 hover:bg-stone-800 text-white text-lg px-8 py-3 md:px-10 md:py-4 rounded-full transition-all hover:shadow-lg flex items-center tracking-widest">
+        <i data-lucide="phone-call" class="mr-3 h-5 w-5"></i>
+        電話專屬預約
+      </button>
+    </div>
+  </section>
+
+  <!-- 關於我們區塊 -->
+  <section id="about" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-16">
+        <div class="w-full md:w-1/2 relative">
+          <div class="absolute -inset-4 bg-stone-100 rounded-2xl transform rotate-2"></div>
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="深層筋膜釋放" class="relative rounded-xl shadow-lg object-cover h-[400px] w-full grayscale-[20%]"/>
+        </div>
+        <div class="w-full md:w-1/2 space-y-8">
+          <div>
+            <h2 class="text-3xl font-bold text-stone-900 tracking-wider mb-2">專注於深層的釋放</h2>
+            <div class="h-0.5 w-12 bg-stone-900"></div>
+          </div>
+          <p class="text-stone-600 leading-relaxed text-lg font-light">
+            我們深知現代人因為久坐、高強度運動或姿勢不良，常伴隨著長期的肩頸僵硬與肌肉痠痛。筋膜王打破傳統穴道按摩的迷思，採用科學化的「深層筋膜放鬆技術」。
+          </p>
+          <p class="text-stone-600 leading-relaxed text-lg font-light">
+            店內環境安靜舒適，以極簡的清水模風格打造沉穩的空間，提供完全隱私的獨立包廂。結合專業的筋膜放鬆手法與柔和的環境氛圍，幫助您從根本解決緊繃問題，享受純粹的放鬆與舒服。
+          </p>
+          <ul class="space-y-4 mt-6">
+            <li class="flex items-center text-stone-700 font-medium tracking-wide"><div class="w-1.5 h-1.5 bg-stone-900 rounded-full mr-3"></div>職人級深層手技</li>
+            <li class="flex items-center text-stone-700 font-medium tracking-wide"><div class="w-1.5 h-1.5 bg-stone-900 rounded-full mr-3"></div>深層有感筋膜放鬆</li>
+            <li class="flex items-center text-stone-700 font-medium tracking-wide"><div class="w-1.5 h-1.5 bg-stone-900 rounded-full mr-3"></div>獨立隱私靜謐空間</li>
+            <li class="flex items-center text-stone-700 font-medium tracking-wide"><div class="w-1.5 h-1.5 bg-stone-900 rounded-full mr-3"></div>資深專家親自服務</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 認識筋膜放鬆區塊 -->
+  <section id="knowledge" class="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-stone-800 rounded-full blur-[120px] opacity-30 -translate-y-1/2 translate-x-1/3"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wider mb-4">為什麼需要筋膜放鬆？</h2>
+          <div class="h-0.5 w-16 bg-stone-500 mb-10"></div>
+          <div class="mb-8">
+            <h3 class="text-xl text-stone-200 font-medium tracking-wide mb-3 flex items-center">
+              <div class="w-1.5 h-6 bg-stone-500 mr-3"></div>身體的隱形防護衣
+            </h3>
+            <p class="text-stone-400 leading-relaxed font-light text-lg">
+              「筋膜」是包覆著全身肌肉、骨骼、神經與血管的結締組織。人體無法單靠肌肉和骨骼完成動作，必須仰賴筋膜的支撐與力量傳遞。當筋膜因為久坐或過度使用而緊繃時，就像穿了一件縮水的緊身衣，會讓身體處處受限、產生痠痛。
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl text-stone-200 font-medium tracking-wide mb-3 flex items-center">
+              <div class="w-1.5 h-6 bg-stone-500 mr-3"></div>釋放壓力的科學原理
+            </h3>
+            <p class="text-stone-400 leading-relaxed font-light text-lg">
+              專業的筋膜放鬆會利用不同層次的精準施壓，改變筋膜內的液體分布。當壓力釋放的瞬間，新鮮血液會補償性地大量灌入，這不僅能排出產生疼痛的廢物，更能在放鬆筋膜的同時，達到深層肌肉的徹底舒展。
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-stone-800/40 p-6 rounded-xl border border-stone-700/50 hover:bg-stone-800/80 transition-colors">
+            <i data-lucide="droplet" class="w-8 h-8 text-stone-300 mb-4"></i>
+            <h4 class="text-lg font-bold text-stone-100 tracking-wider mb-2">改善血液循環</h4>
+            <p class="text-stone-400 text-sm font-light leading-relaxed">解除緊繃筋膜對血管的壓迫，讓氧氣與養分更順暢地送達全身，加速疲勞恢復與組織修復。</p>
+          </div>
+          <div class="bg-stone-800/40 p-6 rounded-xl border border-stone-700/50 hover:bg-stone-800/80 transition-colors">
+            <i data-lucide="battery-charging" class="w-8 h-8 text-stone-300 mb-4"></i>
+            <h4 class="text-lg font-bold text-stone-100 tracking-wider mb-2">縮短痠痛週期</h4>
+            <p class="text-stone-400 text-sm font-light leading-relaxed">釋放運動後或長期姿勢不良造成的組織沾黏，大幅降低延遲性肌肉痠痛的時間與不適感。</p>
+          </div>
+          <div class="bg-stone-800/40 p-6 rounded-xl border border-stone-700/50 hover:bg-stone-800/80 transition-colors">
+            <i data-lucide="move" class="w-8 h-8 text-stone-300 mb-4"></i>
+            <h4 class="text-lg font-bold text-stone-100 tracking-wider mb-2">提升關節活動度</h4>
+            <p class="text-stone-400 text-sm font-light leading-relaxed">恢復筋膜原有的彈性，減少關節周遭肌肉的拉扯疼痛，讓日常站立、行走等動作不再卡卡。</p>
+          </div>
+          <div class="bg-stone-800/40 p-6 rounded-xl border border-stone-700/50 hover:bg-stone-800/80 transition-colors">
+            <i data-lucide="flame" class="w-8 h-8 text-stone-300 mb-4"></i>
+            <h4 class="text-lg font-bold text-stone-100 tracking-wider mb-2">降低壓力與幫助燃脂</h4>
+            <p class="text-stone-400 text-sm font-light leading-relaxed">深層放鬆能降低血液中的壓力荷爾蒙（皮質醇）濃度，不僅舒緩身心，還能間接提升運動燃脂效率。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 有效放鬆流程 -->
+  <section id="process" class="py-24 bg-stone-100 border-y border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-900 tracking-wider mb-4">有效放鬆流程</h2>
+        <div class="h-0.5 w-16 bg-stone-900 mx-auto"></div>
+        <p class="mt-6 text-stone-500 tracking-widest">筋膜王標準化四步驟，從根源解決緊繃</p>
+      </div>
+      <div class="relative">
+        <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-stone-300 -translate-y-1/2 z-0"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center group hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-16 h-16 mx-auto bg-stone-900 text-white rounded-full flex items-center justify-center mb-6 shadow-md">
+              <i data-lucide="search" class="w-8 h-8"></i>
+            </div>
+            <div class="text-stone-300 font-bold text-xl mb-2">01</div>
+            <h3 class="text-xl font-bold text-stone-900 mb-3 tracking-wide">體態評估</h3>
+            <p class="text-stone-500 font-light">尋找過緊肌肉<br/>精準定位問題根源</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center group hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-16 h-16 mx-auto bg-stone-900 text-white rounded-full flex items-center justify-center mb-6 shadow-md">
+              <i data-lucide="activity" class="w-8 h-8"></i>
+            </div>
+            <div class="text-stone-300 font-bold text-xl mb-2">02</div>
+            <h3 class="text-xl font-bold text-stone-900 mb-3 tracking-wide">筋膜放鬆</h3>
+            <p class="text-stone-500 font-light">調整肌肉筋膜張力<br/>精準深層手法介入</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center group hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-16 h-16 mx-auto bg-stone-900 text-white rounded-full flex items-center justify-center mb-6 shadow-md">
+              <i data-lucide="target" class="w-8 h-8"></i>
+            </div>
+            <div class="text-stone-300 font-bold text-xl mb-2">03</div>
+            <h3 class="text-xl font-bold text-stone-900 mb-3 tracking-wide">驗證</h3>
+            <p class="text-stone-500 font-light">驗證問題是否改善<br/>確認活動度與感受</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 text-center group hover:-translate-y-2 transition-transform duration-300">
+            <div class="w-16 h-16 mx-auto bg-stone-900 text-white rounded-full flex items-center justify-center mb-6 shadow-md">
+              <i data-lucide="heart-handshake" class="w-8 h-8"></i>
+            </div>
+            <div class="text-stone-300 font-bold text-xl mb-2">04</div>
+            <h3 class="text-xl font-bold text-stone-900 mb-3 tracking-wide">日常保養建議</h3>
+            <p class="text-stone-500 font-light">避免問題一再發生<br/>專屬衛教與伸展指導</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服務項目區塊 -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-900 tracking-wider mb-4">服務項目</h2>
+        <div class="h-0.5 w-16 bg-stone-900 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 服務 1 -->
+        <div class="bg-stone-50 rounded-lg overflow-hidden border border-stone-100 hover:shadow-lg transition-all group flex flex-col">
+          <div class="h-48 bg-stone-900 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-4 border border-stone-700/50 rounded-sm"></div>
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-800"></div>
+            <div class="absolute left-1/2 top-0 w-[1px] h-full bg-stone-800"></div>
+            <h3 class="relative z-10 text-2xl font-bold text-white tracking-widest bg-stone-900 px-4">局部深層放鬆</h3>
+          </div>
+          <div class="p-8 flex-grow flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-stone-800 text-sm font-bold tracking-widest border-b border-stone-800 pb-1">經典推薦</span>
+              <span class="text-stone-500 font-medium">60 分鐘</span>
+            </div>
+            <p class="text-stone-600 mb-8 font-light leading-relaxed flex-grow">針對長期僵硬的局部肌肉群，透過特殊手法剝離沾黏的筋膜層，快速有效改善痠痛、提升關節活動度，適合久坐辦公族。</p>
+            <div class="text-xl font-bold text-stone-900 mt-auto">NT$ 1,200</div>
+          </div>
+        </div>
+        <!-- 服務 2 -->
+        <div class="bg-stone-50 rounded-lg overflow-hidden border border-stone-100 hover:shadow-lg transition-all group flex flex-col">
+          <div class="h-48 bg-stone-900 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-4 border border-stone-700/50 rounded-sm"></div>
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-800"></div>
+            <div class="absolute left-1/2 top-0 w-[1px] h-full bg-stone-800"></div>
+            <h3 class="relative z-10 text-2xl font-bold text-white tracking-widest bg-stone-900 px-4">全身筋膜放鬆</h3>
+          </div>
+          <div class="p-8 flex-grow flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-stone-800 text-sm font-bold tracking-widest border-b border-stone-800 pb-1">全面重塑</span>
+              <span class="text-stone-500 font-medium">90 分鐘</span>
+            </div>
+            <p class="text-stone-600 mb-8 font-light leading-relaxed flex-grow">透過全方位的深層筋膜評估與調整，加速排除乳酸堆積並改善整體肌力失衡，讓緊繃的身體快速回到最協調的狀態。</p>
+            <div class="text-xl font-bold text-stone-900 mt-auto">NT$ 1,800</div>
+          </div>
+        </div>
+        <!-- 服務 3 -->
+        <div class="bg-stone-50 rounded-lg overflow-hidden border border-stone-100 hover:shadow-lg transition-all group flex flex-col">
+          <div class="h-48 bg-stone-900 relative flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-4 border border-stone-700/50 rounded-sm"></div>
+            <div class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-800"></div>
+            <div class="absolute left-1/2 top-0 w-[1px] h-full bg-stone-800"></div>
+            <h3 class="relative z-10 text-2xl font-bold text-white tracking-widest bg-stone-900 px-4">全方位深層修復</h3>
+          </div>
+          <div class="p-8 flex-grow flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+              <span class="text-stone-800 text-sm font-bold tracking-widest border-b border-stone-800 pb-1">極致放鬆</span>
+              <span class="text-stone-500 font-medium">120 分鐘</span>
+            </div>
+            <p class="text-stone-600 mb-8 font-light leading-relaxed flex-grow">結合全身筋膜放鬆與頭肩頸深層舒壓，用最完整的時間照顧每一寸緊繃的肌肉，為您帶來極致的舒服與深度睡眠品質。</p>
+            <div class="text-xl font-bold text-stone-900 mt-auto">NT$ 2,400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 師傅介紹區塊 -->
+  <section id="masters" class="py-24 bg-stone-100 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-900 tracking-wider mb-4">專業師傅</h2>
+        <div class="h-0.5 w-16 bg-stone-900 mx-auto"></div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-center gap-12 max-w-5xl mx-auto">
+        <!-- 何師傅 -->
+        <div class="flex-1 bg-white rounded-lg p-10 border border-stone-200 shadow-sm text-center">
+          <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border border-stone-200 bg-stone-50 flex items-center justify-center">
+             <i data-lucide="user" class="h-12 w-12 text-stone-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-900 tracking-widest mb-2">何師傅</h3>
+          <p class="text-stone-500 font-medium tracking-widest mb-8 text-sm">資深筋膜放鬆專家</p>
+          <p class="text-stone-600 leading-relaxed mb-8 text-left font-light">
+            專注於尋找身體緊繃的根源，透過精準的深層筋膜放鬆技術，協助改善長期的肩頸僵硬與腰背不適。手法沉穩細膩，能在適當的力道中，幫助身體循序漸進地解除深層壓力。
+          </p>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">深層痛點解除</span>
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">體態評估</span>
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">精準放鬆</span>
+          </div>
+        </div>
+        <!-- 阿甫師傅 -->
+        <div class="flex-1 bg-white rounded-lg p-10 border border-stone-200 shadow-sm text-center">
+          <div class="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border border-stone-200 bg-stone-50 flex items-center justify-center">
+             <i data-lucide="user" class="h-12 w-12 text-stone-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-900 tracking-widest mb-2">阿甫 師傅</h3>
+          <p class="text-stone-500 font-medium tracking-widest mb-8 text-sm">資深筋膜放鬆專家</p>
+          <p class="text-stone-600 leading-relaxed mb-8 text-left font-light">
+            精通人體肌理結構，具備豐富的運動修復與深層解痛經驗。擅長以動態伸展結合筋膜釋放技術，精準突破肌肉沾黏與重度緊繃。手法俐落且具備高敏銳度，能有效幫助身體找回原有的彈性與關節靈活度。
+          </p>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">運動恢復</span>
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">動態伸展</span>
+            <span class="px-4 py-1.5 bg-stone-100 text-xs tracking-wider rounded-sm text-stone-700">有感釋放</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 預約專區 (已改為電話引導) -->
+  <section id="booking" class="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2"></div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wider mb-4">電話預約</h2>
+        <div class="h-0.5 w-16 bg-stone-500 mx-auto"></div>
+        <p class="mt-6 text-stone-400 font-light tracking-widest">為了給您最完善的服務，本店採「全預約制」</p>
+      </div>
+
+      <div class="bg-stone-50 text-stone-800 rounded-xl p-10 md:p-16 shadow-2xl flex flex-col items-center transform hover:-translate-y-1 transition-transform duration-300">
+        <div class="w-20 h-20 bg-stone-200 rounded-full flex items-center justify-center mb-6 shadow-inner">
+          <i data-lucide="phone-call" class="h-10 w-10 text-stone-800"></i>
+        </div>
+        <h3 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6 tracking-widest" translate="no">0908-170200</h3>
+        <p class="text-stone-600 mb-2 font-light text-lg">營業時間：週一至週日 10:00 - 22:00</p>
+        <p class="text-stone-500 mb-10 font-light text-sm">（請於營業時間內來電，我們將為您安排專屬時段）</p>
+        
+        <!-- href="tel:..." 可讓手機點擊後直接撥打 -->
+        <a href="tel:0908170200" class="w-full md:w-auto bg-stone-900 hover:bg-stone-800 text-white font-medium tracking-widest text-lg px-12 py-4 rounded-full transition-all shadow-md flex items-center justify-center hover:shadow-lg">
+          <i data-lucide="phone" class="mr-3 h-5 w-5"></i>
+          立即撥打預約
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 Footer -->
+  <footer class="bg-white text-stone-500 py-16 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div>
+        <div class="mb-6" translate="no">
+          <!-- 絕對不跑掉的書法字體 -->
+          <span class="text-3xl text-stone-900 calligraphy">筋膜王</span>
+          <span class="text-stone-500 text-xs ml-2 font-medium tracking-widest">按摩專門店</span>
+        </div>
+        <p class="mb-6 font-light leading-relaxed">專注於深層筋膜放鬆，<br/>給您最純粹的身體保養與修復體驗。</p>
+        <div class="flex gap-4">
+          <a href="https://www.facebook.com/p/%E7%AD%8B%E8%86%9C%E7%8E%8B-%E6%8C%89%E6%91%A9%E5%B0%88%E9%96%80%E5%BA%97-61563452391194/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-stone-100 text-stone-600 hover:bg-stone-900 hover:text-white transition-all shadow-sm" title="前往筋膜王 Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/fascia_king2024/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-stone-100 text-stone-600 hover:bg-stone-900 hover:text-white transition-all shadow-sm" title="前往筋膜王 Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-stone-900 font-bold tracking-widest mb-6">聯絡資訊</h4>
+        <div class="space-y-4 font-light">
+          <p class="flex items-center"><i data-lucide="map-pin" class="h-5 w-5 mr-3 text-stone-400"></i> 35059苗栗縣竹南鎮大埔街133號</p>
+          <p class="flex items-center"><i data-lucide="phone" class="h-5 w-5 mr-3 text-stone-400"></i> 0908-170200</p>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-stone-900 font-bold tracking-widest mb-6">營業時間</h4>
+        <div class="space-y-4 font-light">
+          <p class="flex items-center"><i data-lucide="clock" class="h-5 w-5 mr-3 text-stone-400"></i> 週一至週日</p>
+          <p class="pl-8">10:00 AM - 10:00 PM</p>
+          <p class="pl-8 text-sm text-stone-400 tracking-wider">（採全預約制）</p>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-stone-100 text-center text-sm font-light tracking-wider">
+      <p translate="no">&copy; 2026 筋膜王 按摩專門店 Fascia King. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript 邏輯 (移除了表單驗證，僅保留版面切換) -->
+  <script>
+    // 渲染 Lucide Icons
+    lucide.createIcons();
+
+    // 手機選單開關
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // 畫面滑動跳轉
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if(el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      document.getElementById('mobileMenu').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
