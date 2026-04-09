@@ -18,7 +18,7 @@
   <!-- 引入 Google 字體 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
   
   <!-- 引入 Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,10 +33,28 @@
     /* 原本的明體 */
     .noto-serif { font-family: "Noto Serif TC", serif; }
     
-    /* 書法字體風格 (如果圖片失效時的備用字體) */
+    /* 書法字體風格 (蘭亭行書風格) */
     .calligraphy { 
-      font-family: "STXingkai", "華文行楷", "Xingkai SC", "DFXingShu-W5", "DFXingkai-W5", "Zhi Mang Xing", "Ma Shan Zheng", cursive; 
+      font-family: "FZXingKai-Z04", "FZXingKai", "STXingkai", "Zhi Mang Xing", "Liu Jian Mao Cao", "Ma Shan Zheng", cursive; 
       font-weight: normal; 
+    }
+
+    /* IG 專屬漸層按鈕與光圈樣式 */
+    .bg-ig-gradient {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+    .bg-ig-gradient:hover {
+      background: linear-gradient(45deg, #e08b2e 0%, #d65f35 25%, #c8223b 50%, #bc1e5c 75%, #ad157c 100%);
+    }
+    
+    /* 模擬 IG 限動光圈的呼吸動畫 (改為低調的石灰色) */
+    @keyframes story-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(28, 25, 23, 0.1); }
+      70% { box-shadow: 0 0 0 15px rgba(28, 25, 23, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(28, 25, 23, 0); }
+    }
+    .animate-story-pulse {
+      animation: story-pulse 2s infinite;
     }
 
     /* 選取文字時的背景色 */
@@ -50,8 +68,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-20">
         <div class="flex items-center cursor-pointer" onclick="scrollToSection('home')" translate="no">
-          <!-- 調整：縮小圖片實際佔用高度，利用 scale 放大並向左對齊，拉近與右邊文字的距離 -->
-          <img src="./logo.png" alt="筋膜王" class="h-10 md:h-12 w-auto object-contain transform scale-125 origin-left" onerror="this.onerror=null; this.outerHTML='<span class=\'text-3xl md:text-4xl text-stone-900 calligraphy mt-1\'>筋膜王</span>';">
+          <span class="text-3xl md:text-4xl text-stone-900 calligraphy mt-1 tracking-widest">筋膜王</span>
           <span class="text-stone-500 text-sm ml-4 md:ml-6 font-medium tracking-widest border-l border-stone-300 pl-3">
             按摩專門店
           </span>
@@ -95,19 +112,17 @@
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full md:w-3/4 h-[300px] md:h-[500px] bg-yellow-100/30 blur-[80px] md:blur-[120px] rounded-full pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center z-10 w-full pt-10">
-      
-      <!-- 給 Google 看的隱藏大標題 -->
       <h1 class="sr-only">筋膜王 按摩專門店 - 苗栗竹南深層筋膜放鬆專家</h1>
 
-      <!-- 調整：降低圖片高度框架，用 scale 放大字體，減少 mb (下邊距) 讓下方文字貼緊圖片 -->
-      <img src="./logo.png" alt="筋膜王" class="h-20 md:h-32 w-auto mb-4 md:mb-6 drop-shadow-sm object-contain transform scale-[1.4] md:scale-[1.6]" translate="no" onerror="this.onerror=null; this.outerHTML='<div class=\'text-7xl md:text-8xl text-stone-900 mb-4 tracking-widest drop-shadow-sm calligraphy\' translate=\'no\'>筋膜王</div>';">
+      <div class="text-7xl md:text-8xl text-stone-900 mb-4 tracking-widest drop-shadow-sm calligraphy" translate="no">筋膜王</div>
       
       <p class="text-xl md:text-2xl text-stone-700 mb-10 max-w-2xl leading-relaxed tracking-widest font-light relative z-10">
         純粹的手法，極致的放鬆<br/>回歸身體最原本的平靜
       </p>
+      
       <button onclick="scrollToSection('booking')" class="bg-stone-900 hover:bg-stone-800 text-white text-lg px-8 py-3 md:px-10 md:py-4 rounded-full transition-all hover:shadow-lg flex items-center tracking-widest relative z-10">
-        <i data-lucide="phone" class="mr-3 h-5 w-5"></i>
-        來電預約時段
+        <i data-lucide="calendar-check" class="mr-3 h-5 w-5"></i>
+        查看預約方式
       </button>
     </div>
   </section>
@@ -348,31 +363,94 @@
     </div>
   </section>
 
-  <!-- 電話預約引導專區 -->
-  <section id="booking" class="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-stone-800 rounded-full blur-3xl opacity-50 translate-y-1/2 -translate-x-1/2"></div>
-
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-wider mb-4">電話預約</h2>
-        <div class="h-0.5 w-16 bg-stone-500 mx-auto"></div>
-        <p class="mt-6 text-stone-400 font-light tracking-widest">為了給您最完善的服務，本店採「全預約制」</p>
+  <!-- 全新設計：非對稱引導預約專區 (融合清水模極簡風格) -->
+  <section id="booking" class="py-24 bg-white border-y border-stone-200 relative overflow-hidden">
+    
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- 區塊標題 -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-stone-900 tracking-wider mb-4">預約方式</h2>
+        <div class="h-0.5 w-16 bg-stone-900 mx-auto"></div>
+        <p class="mt-6 text-stone-500 font-light tracking-widest text-lg">本店採「全預約制」，每日最新空檔皆發布於 IG 限時動態</p>
       </div>
 
-      <div class="bg-stone-50 text-stone-800 rounded-xl p-10 md:p-16 shadow-2xl flex flex-col items-center transform hover:-translate-y-1 transition-transform duration-300">
-        <div class="w-20 h-20 bg-stone-200 rounded-full flex items-center justify-center mb-6 shadow-inner">
-          <i data-lucide="phone-call" class="h-10 w-10 text-stone-800"></i>
-        </div>
-        <h3 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6 tracking-widest" translate="no">0908-170200</h3>
-        <p class="text-stone-600 mb-2 font-light text-lg">營業時間：週一至週日 10:00 - 22:00</p>
-        <p class="text-stone-500 mb-10 font-light text-sm">（請於營業時間內來電，我們將為您安排專屬時段）</p>
+      <!-- 不對稱網格設計：凸顯 IG，弱化電話 -->
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
         
-        <!-- 手機點擊後直接撥打 -->
-        <a href="tel:0908170200" class="w-full md:w-auto bg-stone-900 hover:bg-stone-800 text-white font-medium tracking-widest text-lg px-12 py-4 rounded-full transition-all shadow-md flex items-center justify-center hover:shadow-lg">
-          <i data-lucide="phone" class="mr-3 h-5 w-5"></i>
-          立即撥打預約
-        </a>
+        <!-- 主要推薦：Instagram 預約 (佔據 3/5 寬度) -->
+        <div class="lg:col-span-3 bg-stone-50 rounded-2xl p-8 md:p-12 border border-stone-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg group">
+
+          <div class="flex flex-col md:flex-row gap-8 items-center md:items-start h-full">
+            
+            <!-- 視覺化 IG 限動圈圈 -->
+            <div class="relative shrink-0 mt-2">
+              <div class="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] animate-story-pulse transition-transform duration-500 group-hover:scale-105">
+                <div class="w-full h-full bg-white rounded-full border-4 border-white flex items-center justify-center overflow-hidden">
+                   <span class="text-3xl text-stone-900 calligraphy whitespace-nowrap pl-2">筋膜王</span>
+                </div>
+              </div>
+              <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-stone-900 text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-stone-50 shadow-sm whitespace-nowrap">
+                限時動態
+              </div>
+            </div>
+
+            <!-- IG 預約文案區 -->
+            <div class="flex-1 text-center md:text-left flex flex-col justify-between h-full">
+              <div>
+                <div class="inline-flex items-center bg-white text-stone-800 text-xs font-bold tracking-wider px-3 py-1.5 rounded-full border border-stone-200 mb-4 shadow-sm">
+                  <i data-lucide="star" class="w-3 h-3 mr-1.5 text-stone-900 fill-current"></i>
+                  強烈建議・首選預約方式
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mb-4 tracking-widest">Instagram 查看空檔</h3>
+                
+                <p class="text-stone-600 font-light leading-relaxed mb-8">
+                  為了讓您能最快掌握時間，我們每天都會在 <span class="text-stone-900 font-medium border-b border-stone-900 pb-0.5">IG 限時動態</span> 更新當日與近期的「最新空檔」與「臨時釋出名額」。請直接點擊下方按鈕前往查看，並直接私訊我們預約！
+                </p>
+              </div>
+
+              <a href="https://www.instagram.com/fascia_king2024/" target="_blank" rel="noopener noreferrer" class="mt-auto block w-full text-center bg-stone-900 text-white font-medium tracking-widest text-lg py-4 rounded-xl transition-all shadow-md hover:bg-stone-800 hover:shadow-lg flex justify-center items-center">
+                前往 IG 查看限動並私訊
+                <i data-lucide="arrow-right" class="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 次要備案：電話預約 (佔據 2/5 寬度，樣式更為內斂) -->
+        <div class="lg:col-span-2 bg-white rounded-2xl p-8 border border-stone-200 flex flex-col justify-center transition-all hover:border-stone-300">
+          
+          <div class="flex items-center mb-6 justify-center md:justify-start">
+            <div class="w-12 h-12 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center mr-4">
+              <i data-lucide="phone" class="h-5 w-5 text-stone-500"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-stone-900 tracking-widest">電話預約</h3>
+              <p class="text-sm text-stone-500 font-light mt-0.5">無使用 IG 之顧客</p>
+            </div>
+          </div>
+          
+          <p class="text-stone-500 font-light leading-relaxed mb-6 text-sm text-center md:text-left">
+            若您沒有使用 Instagram，依然可以直接撥打電話與我們聯繫。
+          </p>
+
+          <div class="bg-stone-50 rounded-xl p-5 border border-stone-100 mb-8 space-y-3 font-light text-sm text-stone-600">
+            <p class="flex items-center">
+              <i data-lucide="clock" class="w-4 h-4 mr-3 text-stone-400 shrink-0"></i> 
+              接聽時間：10:00 - 22:00
+            </p>
+            <p class="flex items-start">
+              <i data-lucide="info" class="w-4 h-4 mr-3 mt-0.5 text-stone-400 shrink-0"></i> 
+              <span class="leading-relaxed">若遇店內忙碌可能無法及時接聽，敬請稍後再撥或改用 IG 私訊，感謝體諒。</span>
+            </p>
+          </div>
+
+          <a href="tel:0908170200" class="mt-auto block w-full text-center bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium tracking-widest py-4 rounded-xl transition-all shadow-sm flex justify-center items-center group cursor-pointer">
+            <i data-lucide="phone-call" class="mr-2 h-5 w-5 text-stone-500 group-hover:text-stone-800 transition-colors"></i>
+            立即撥打 0908-170200
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -382,9 +460,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
       <div>
         <div class="mb-6 flex items-end" translate="no">
-          <!-- 調整：進一步放大圖片比例與高度，並大幅拉近與旁邊文字的距離 -->
-          <img src="./logo.png" alt="筋膜王" class="h-12 md:h-14 w-auto object-contain inline-block transform scale-[1.4] md:scale-[1.6] origin-left" onerror="this.onerror=null; this.outerHTML='<span class=\'text-4xl text-stone-900 calligraphy\'>筋膜王</span>';">
-          <span class="text-stone-500 text-xs ml-1 md:ml-2 font-medium tracking-widest mb-1.5 md:mb-2">按摩專門店</span>
+          <span class="text-4xl text-stone-900 calligraphy tracking-widest">筋膜王</span>
+          <span class="text-stone-500 text-xs ml-1 md:ml-3 font-medium tracking-widest mb-1 md:mb-1.5">按摩專門店</span>
         </div>
         <p class="mb-6 font-light leading-relaxed">專注於深層筋膜放鬆，<br/>給您最純粹的身體保養與修復體驗。</p>
         <div class="flex gap-4">
